@@ -9,8 +9,8 @@ class test_battery_current_ranges(unittest.TestCase):
         
     def test_bms_param_generation(self):
         battery_param = bms_sender_data.bms_parameters_generation()
-        self.assertTrue(bms_param['temperature'])
-        self.assertTrue(bms_param['state_of_charge'])
+        self.assertFalse(bms_param['temperature'])
+        self.assertFalse(bms_param['state_of_charge'])
 
       
 if __name__ == '__main__':
