@@ -1,4 +1,3 @@
-import alerts
 import random
 import time
 
