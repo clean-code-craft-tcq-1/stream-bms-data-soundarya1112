@@ -1,5 +1,5 @@
 
-def check_and_alert(battery_inputs,bmsParam_value,alertType):
+def check_and_alert(battery_inputs,bmsParam_value,alertTarget):
   return (alertType[alertTarget](battery_inputs,bmsParam_value))
 
 def send_to_controller(breachType):
