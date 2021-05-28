@@ -17,7 +17,7 @@ def battery_validationcheck(battery_inputs):
 def battery_Limit_Check(bmsParam_name,bmsParam_value,outOfIndex_Values): 
         if (bmsParam_value < battery_allowedValues[bmsParam_name]['min']) or (bmsParam_value > battery_allowedValues[bmsParam_name]['max']):
             outOfIndex_Values.append(bmsParam_name)
-        printOutput(battery_inputs,bmsParam_value,alertType)
+       
                    
 def battery_is_ok(battery_inputs):
         battery_range_check = battery_validationcheck(battery_inputs)
@@ -27,18 +27,16 @@ def battery_is_ok(battery_inputs):
             return False
           
 def bms_parameters_generation():
-    bms_params = {}
-    bms_params["temperature"] = random.randint(battery_allowedValues['temperature']['min'],battery_allowedValues['temperature']['max']))
-    bms_params["state_of_charge"] = random.randint(battery_allowedValues['state_of_charge']['min'], battery_allowedValues['state_of_charge']['max']))
-    bms_params["charge_rate"] = random.randint(battery_allowedValues['charge_rate']['min'], battery_allowedValues['charge_rate']['max']))    
-    return bms_params
+        bms_params = {}
+        bms_params["temperature"] = random.randint(battery_allowedValues['temperature']['min'],battery_allowedValues['temperature']['max']))
+        bms_params["state_of_charge"] = random.randint(battery_allowedValues['state_of_charge']['min'], battery_allowedValues['state_of_charge']['max']))
+        bms_params["charge_rate"] = random.randint(battery_allowedValues['charge_rate']['min'], battery_allowedValues['charge_rate']['max']))    
+        return bms_params
 
 def _streaming_bms_readings(max_count):
-    bmsparams_count = 0
-    while(bmsparams_count < max_count):
+        bmsparams_count = 0
+        while(bmsparams_count < max_count):
         print(bms_parameters_generation())
         bmsparams_count += 1
         time.sleep(3)
           
- def printOutput(battery_inputs,bmsParam_value,alertTarget):
-      return alerts.check_and_alert(battery_inputs,bmsParam_value,alertTarget)
