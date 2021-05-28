@@ -36,4 +36,4 @@ jobs:
           path: ./htmlcov
           retention-days: 1
       - name: Run
-        run: python bms_current_ranges.py
+        run: python bms_data_test.py
