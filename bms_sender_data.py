@@ -17,7 +17,7 @@ def battery_validationcheck(battery_inputs):
 def battery_Limit_Check(bmsParam_name,bmsParam_value,outOfIndex_Values): 
         if (bmsParam_value < battery_allowedValues[bmsParam_name]['min']) or (bmsParam_value > battery_allowedValues[bmsParam_name]['max']):
             outOfIndex_Values.append(bmsParam_name)
-        
+        printOutput(battery_inputs,bmsParam_value,alertType)
                    
 def battery_is_ok(battery_inputs):
         battery_range_check = battery_validationcheck(battery_inputs)
