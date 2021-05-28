@@ -41,4 +41,4 @@ def _streaming_bms_readings(max_count):
         time.sleep(3)
           
  def printOutput(battery_inputs,bmsParam_value,alertType):
-      return alerts.check_and_alert(battery_inputs,bmsParam_value,alertType)
+      return alerts.check_and_alert(battery_inputs,bmsParam_value,alertTarget)
