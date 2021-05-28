@@ -1,4 +1,3 @@
-
 def check_and_alert(battery_inputs,bmsParam_value,alertTarget):
   return (alertType[alertTarget](battery_inputs,bmsParam_value))
 
