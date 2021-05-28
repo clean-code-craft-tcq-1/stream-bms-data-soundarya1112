@@ -32,7 +32,7 @@ def bms_parameters_generation():
         bms_params["charge_rate"] = random.randint(battery_allowedValues['charge_rate']['min'], battery_allowedValues['charge_rate']['max'])   
         return bms_params
 
-def _streaming_bms_readings(max_count):
+def streaming_bms_readings(max_count):
         bmsparams_count = 0
         while(bmsparams_count < max_count):
              print(bms_parameters_generation())
