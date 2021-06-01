@@ -11,7 +11,7 @@ class test_battery_current_ranges(unittest.TestCase):
         bmsparams = bms_sender_data.bms_parameters_generation()
         bmsparamkeys = list(bmsparams.keys())
         self.assertTrue(bmsparamkeys == ['temperature', 'soc'])
-        self.assertFalse(bmsparamkeys == ['charge_rate', 'soc'])
+        self.assertTrue(bmsparamkeys == ['charge_rate', 'soc'])
 
     def test_streaming_bms_readings(self):
         bms_sender_data.streaming_bms_readings(5)
