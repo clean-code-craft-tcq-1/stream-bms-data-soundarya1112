@@ -1,0 +1,17 @@
+import pandas as pd
+
+numlist = [1, 2, 3, 7, 9]
+
+window_size = 3
+
+num_series = pd.Series(numlist)
+
+windows = num_series.rolling(window_size)
+
+moving_averages = windows.mean()
+
+moving_averages = moving_averages.tolist()
+
+moving_averages_without_nans = moving_averages_list[window_size - 1:]
+
+print(moving_averages_without_nans)
