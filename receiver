@@ -1,6 +1,7 @@
 import pandas as pd
+import bms_sender_data
 
-numlist = [1, 2, 3, 7, 9]
+numlist = bms_sender_data.streaming_bms_readings(5)
 
 window_size = 3
 
