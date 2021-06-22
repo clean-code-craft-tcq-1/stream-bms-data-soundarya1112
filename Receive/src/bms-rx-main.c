@@ -9,6 +9,7 @@
 bool isStopRequestedByUser = false;
 
 /************************ Functions **************************/
+#ifndef UNIT_TEST
 int main()
 {
     signal(SIGINT, sighandler);
@@ -16,3 +17,4 @@ int main()
     BMSDataReceiveFromConsole();
     return 0;
 }
+#endif
