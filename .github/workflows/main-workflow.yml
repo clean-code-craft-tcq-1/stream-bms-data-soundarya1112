@@ -42,4 +42,4 @@ jobs:
       - name: Receiver test
         run: g++ -I./Receive/includes -DUNIT_TEST -Wall -Wextra -fprofile-arcs -ftest-coverage -o testchecker ./Receive/test/*.cpp
       - name: build for receiver
-        run: g++ -Iincludes -Wall -Wextra -o receiver ./Receive/src/*.c
+        run: g++ -I./Receive/includes -Wall -Wextra -o receiver ./Receive/src/*.c
