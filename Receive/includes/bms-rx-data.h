@@ -50,7 +50,7 @@ typedef struct BatteryParametersOut{
 
 //extern struct BatteryParam_s BatteryParam[NumberOfParameters];
 
-extern int sig_caught ;
+extern bool isStopRequestedByUser;
 
 #if(TEST_MODE)
 #define  TestSize 13
@@ -63,6 +63,8 @@ extern char strInput[TestSize][100];
 
 
 /**************Function prototype section*********************/
+
+void sighandler(int);
 
 float getParameterFromConsole(char *getLine, BmsParameters_e BatParam);
 

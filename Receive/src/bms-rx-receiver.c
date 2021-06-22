@@ -1,8 +1,8 @@
-#include "bms_rx-data.h"
+#include "bms-rx-data.h"
 
 
-BatParams_s BatteryData[NumberOfParameters] = {{"temperature", TEMPERATURE_MIN , TEMPERATURE_MAX},
-                                                  {"charge_rate", CHARGERATE_MIN , CHARGERATE_MAX}};
+BatParams_s BatteryData[NumberOfParameters] = {{"\'temperature\'", TEMPERATURE_MIN , TEMPERATURE_MAX},
+                                                  {"\'charge_rate\'", CHARGERATE_MIN , CHARGERATE_MAX}};
 
 UpdateSMAData UpdateSMADataParam[NumberOfParameters] = {UpdateTemperature , UpdateChargeRate};
 
@@ -26,24 +26,24 @@ void BMSDataReceiveFromConsole()
     do
     {
         eofReached = getParamsFromString(str, MAXLENGTH);
-        for (int batteryParamIterater=0 ; batteryParamIterater < NumberOfParameters; batteryParamIterater++)
+        for (batteryParamIterater=0 ; batteryParamIterater < NumberOfParameters; batteryParamIterater++)
         {
             BMSParamValueRx[batteryParamIterater] = getParameterFromConsole(str,(BmsParameters_e)batteryParamIterater);
             
-            if(IsWithinRange(BMSParamValueRx[batteryParamIterater], BatteryParam[batteryParamIterater].minValue , BatteryParam[batteryParamIterater].maxValue))
+            if(IsWithinRange(BMSParamValueRx[batteryParamIterater], BatteryData[batteryParamIterater].minValue , BatteryData[batteryParamIterater].maxValue))
             {
                 BatteryParamEvaluated[batteryParamIterater].SMA =  movingAverageValue((ReadingsBuffer[batteryParamIterater]), (ReadingsSum+batteryParamIterater), batteryParamIterater, SMA_RANGE, BMSParamValueRx[batteryParamIterater]);
                 
-                BatteryParamEvaluated[batteryParamIterater].minRxd = MinimumValue(BMSParamValueRx[batteryParamIterater],BatteryParamEvaluated[batteryParamIterater].minRxd);
+                BatteryParamEvaluated[batteryParamIterater].minRx = MinimumValue(BMSParamValueRx[batteryParamIterater],BatteryParamEvaluated[batteryParamIterater].minRx);
                 
-                BatteryParamEvaluated[batteryParamIterater].maxRxd = MaximumValue(BMSParamValueRx[batteryParamIterater],BatteryParamEvaluated[batteryParamIterater].maxRxd);
+                BatteryParamEvaluated[batteryParamIterater].maxRx = MaximumValue(BMSParamValueRx[batteryParamIterater],BatteryParamEvaluated[batteryParamIterater].maxRx);
                 
-                UpdateParamSMAData[batteryParamIterater](BatteryParamEvaluated[batteryParamIterater]);
+                UpdateSMAData[batteryParamIterater](BatteryParamEvaluated[batteryParamIterater]);
                 
             }
             else
             {
-               UpdateParamSMAData[batteryParamIterater](INVALID_VALUE_s);
+               UpdateSMAData[batteryParamIterater](INVALID_VALUE_s);
             } 
            
            #if(TEST_MODE)
@@ -54,7 +54,7 @@ void BMSDataReceiveFromConsole()
         #endif      
            
         }
-    }while((!isStopRequestedByUser) || (eofReached != 1))
+    }while((!isStopRequestedByUser) || (eofReached != 1));
 
 }
 
@@ -68,7 +68,7 @@ float getParameterFromConsole(char *getLine, BmsParameters_e BatParam)
   int k=0, p =0;
   float temp;
   char buffer[MAXLENGTH];
-  char pyString[MAXLENGTH];
+  //char pyString[MAXLENGTH];
   
   strcpy(buffer,getLine);
   tokenCategory = strtok (buffer,",");
@@ -89,15 +89,16 @@ float getParameterFromConsole(char *getLine, BmsParameters_e BatParam)
 	{
 		strcpy((splitStrParams[p]), tokenParams);
 		p++;
-		tokenParams = strtok (NULL, ":")
+		tokenParams = strtok (NULL, ":");
 	}
   }
   
   for(int j=0;j < (NumberOfParameters*3);j=j+2)
   {
-      pyString = "'" + BatteryData[BatParam].ParameterName + "'";
-      printf("pyString value : %s ", pyString);
-      if(strcmp((splitStrParams[j]), pyString) == 0)
+      //pyString = "'" + BatteryData[BatParam].ParameterName + "'";
+      //printf("pyString value : %s ", pyString);
+	  printf("BaterryData value : %s", BatteryData[BatParam].ParameterName);
+      if(strcmp((splitStrParams[j]), BatteryData[BatParam].ParameterName) == 0)
       {
          temp = atof(splitStrParams[j+1]);
          break;
