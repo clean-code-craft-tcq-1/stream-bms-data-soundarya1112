@@ -11,7 +11,7 @@ void BMSDataReceiveFromConsole()
 {
     int batteryParamIterater;
     int eofReached = 0; 
-    //int count = 0;
+    int count = 0;
 
     float BMSParamValueRx[NumberOfParameters] = {0};
     float ReadingsBuffer[NumberOfParameters][SMA_RANGE]= {0};
@@ -46,10 +46,10 @@ void BMSDataReceiveFromConsole()
             {
                UpdateSMADataParam[batteryParamIterater](INVALID_VALUE_s);
             } 
-           //count++;
+           count++;
         }
-    }while((!isStopRequestedByUser) || (eofReached != 1)); 
-    //}while((!isStopRequestedByUser) || (eofReached != 1) || (count=100)); // to avoid running infinitely
+    //}while((!isStopRequestedByUser) || (eofReached != 1)); 
+    }while((!isStopRequestedByUser) || (eofReached != 1) || (count=100)); // to avoid running infinitely
 }
 
 
