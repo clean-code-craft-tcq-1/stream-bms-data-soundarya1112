@@ -38,7 +38,7 @@ jobs:
       - name: Run
         run: python bms_data_test.py
       - name: Receiver test
-        run: g++ -I./Receive/includes -DUNIT_TEST -Wall -Wextra -fprofile-arcs -ftest-coverage -o testchecker ./Receive/test/*.cpp
+        run: g++ -I./Receive/includes -DUNIT_TEST -Wall -Wextra -fprofile-arcs -ftest-coverage -o testchecker ./Receive/test/*.cpp ./Receive/src/*.c
       - name: build for receiver
         run: g++ -I./Receive/includes -Wall -Wextra -o receiver ./Receive/src/*.c
       - name: Sender | Receiver
