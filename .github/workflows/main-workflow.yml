@@ -35,11 +35,11 @@ jobs:
           name: coverage
           path: ./htmlcov
           retention-days: 1
-      #- name: Run
-       # run: python bms_data_test.py
-      #- name: Sender
-       # run: python bms_data_send.py
+      - name: Run
+        run: python bms_data_test.py
       - name: Receiver test
         run: g++ -I./Receive/includes -DUNIT_TEST -Wall -Wextra -fprofile-arcs -ftest-coverage -o testchecker ./Receive/test/*.cpp
       - name: build for receiver
         run: g++ -I./Receive/includes -Wall -Wextra -o receiver ./Receive/src/*.c
+      - name: Sender | Receiver
+        run: python bms_data_send.py | ./receiver
