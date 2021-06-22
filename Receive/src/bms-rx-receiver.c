@@ -71,7 +71,7 @@ float getParameterFromConsole(char *getLine, BmsParameters_e BatParam)
   //char pyString[MAXLENGTH];
   
   strcpy(buffer,getLine);
-  printf("\n +++str value : %s  ++",buffer);
+  printf("\n +++str value : %s  +++",buffer);
   tokenCategory = strtok (buffer,",");
   
   while (tokenCategory != NULL)
