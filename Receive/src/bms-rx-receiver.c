@@ -38,12 +38,12 @@ void BMSDataReceiveFromConsole()
                 
                 BatteryParamEvaluated[batteryParamIterater].maxRx = MaximumValue(BMSParamValueRx[batteryParamIterater],BatteryParamEvaluated[batteryParamIterater].maxRx);
                 
-                UpdateSMAData[batteryParamIterater](BatteryParamEvaluated[batteryParamIterater]);
+                UpdateSMADataParam[batteryParamIterater](BatteryParamEvaluated[batteryParamIterater]);
                 
             }
             else
             {
-               UpdateSMAData[batteryParamIterater](INVALID_VALUE_s);
+               UpdateSMADataParam[batteryParamIterater](INVALID_VALUE_s);
             } 
            
            #if(TEST_MODE)
