@@ -48,7 +48,7 @@ typedef struct BatteryParametersOut{
     float maxRx;
 }BatParamsOut_s;
 
-extern struct BatteryParam_s BatteryParam[NumberOfParameters];
+//extern struct BatteryParam_s BatteryParam[NumberOfParameters];
 
 extern int sig_caught ;
 
@@ -68,11 +68,11 @@ float getParameterFromConsole(char *getLine, BmsParameters_e BatParam);
 
 void BMSDataReceiveFromConsole();
 
-typedef bool (*UpdateSMAData)(struct BatParamsOut_s BatteryParamEvaluated);
+typedef bool (*UpdateSMAData)(BatParamsOut_s BatteryParamEvaluated);
 
-bool UpdateTemperature (struct BatParamsOut_s BatteryParamEvaluated);
+bool UpdateTemperature (BatParamsOut_s BatteryParamEvaluated);
 
-bool UpdateChargeRate (struct BatParamsOut_s BatteryParamEvaluated);
+bool UpdateChargeRate (BatParamsOut_s BatteryParamEvaluated);
 
 bool IsWithinRange(float value, float min, float max);
 
