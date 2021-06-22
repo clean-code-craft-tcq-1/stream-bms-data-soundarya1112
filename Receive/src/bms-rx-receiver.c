@@ -11,6 +11,7 @@ void BMSDataReceiveFromConsole()
 {
     int batteryParamIterater;
     int eofReached = 0; 
+    int count = 0;
 
     float BMSParamValueRx[NumberOfParameters] = {0};
     float ReadingsBuffer[NumberOfParameters][SMA_RANGE]= {0};
@@ -46,16 +47,9 @@ void BMSDataReceiveFromConsole()
                UpdateSMADataParam[batteryParamIterater](INVALID_VALUE_s);
             } 
            
-           #if(TEST_MODE)
-        printf("Temperature:%f, ChargeRate:%f\n",BMSParamValueRx[0],BMSParamValueRx[1]);
-        printf("SMA Temperature:%f, ChargeRate:%f\n",BatteryParamEvaluated[0].SMA,BatteryParamEvaluated[1].SMA);
-        printf("Min Temperature:%f, ChargeRate:%f\n",BatteryParamEvaluated[0].minRx,BatteryParamEvaluated[1].minRx);
-        printf("Max Temperature:%f, ChargeRate:%f\n\n",BatteryParamEvaluated[0].maxRx,BatteryParamEvaluated[1].maxRx);
-        #endif      
-           
         }
-    }while((!isStopRequestedByUser) || (eofReached != 1));
-
+    //}while((!isStopRequestedByUser) || (eofReached != 1)); 
+    }while((!isStopRequestedByUser) || (eofReached != 1) || (count=100); // to avoid running infinitely
 }
 
 
@@ -82,14 +76,14 @@ float getParameterFromConsole(char *getLine, BmsParameters_e BatParam)
 
   for(int r = 0; r < NumberOfParameters; r++)
   {
-	tokenParams = strtok ((splitStrCategory[r]), ":");
-	
-	while(tokenParams != NULL)
-	{
-		strcpy((splitStrParams[p]), tokenParams);
-		p++;
-		tokenParams = strtok (NULL, ":");
-	}
+    tokenParams = strtok ((splitStrCategory[r]), ":");
+    
+    while(tokenParams != NULL)
+    {
+        strcpy((splitStrParams[p]), tokenParams);
+        p++;
+        tokenParams = strtok (NULL, ":");
+    }
   }
   
   for(int j=0;j < (NumberOfParameters*3);j=j+2)
@@ -99,10 +93,10 @@ float getParameterFromConsole(char *getLine, BmsParameters_e BatParam)
          temp = atof(splitStrParams[j+1]);
          break;
       }
-	  else
-	  {
-		  temp = VALUE_NOTFOUND;
-	  }
+      else
+      {
+          temp = VALUE_NOTFOUND;
+      }
   }
 
   tokenCategory = NULL;
@@ -114,9 +108,6 @@ float getParameterFromConsole(char *getLine, BmsParameters_e BatParam)
 int getParamsFromString(char *getterString, int stringSize)
 {
     int eof = 0;
-    #if(TEST_MODE)
-    strcpy(getterString,strInput[TestCount[TEMPERATURE]]);
-    #else
 
     if(fgets(getterString,stringSize,stdin)== NULL)
     {
@@ -124,6 +115,5 @@ int getParamsFromString(char *getterString, int stringSize)
         printf("EOF Reached, Stop Reading\n");
         eof  = 1;
     }
-    #endif
     return eof;
 }
