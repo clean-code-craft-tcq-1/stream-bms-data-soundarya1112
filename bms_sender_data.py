@@ -27,9 +27,9 @@ def battery_is_ok(battery_inputs):
           
 def bms_parameters_generation():
         bms_params = {}
-        bms_params["temperature"] = round(random.uniform(battery_allowedValues['temperature']['min'],battery_allowedValues['temperature']['max']))
-        bms_params["state_of_charge"] = round(random.uniform(battery_allowedValues['state_of_charge']['min'], battery_allowedValues['state_of_charge']['max']))
-        bms_params["charge_rate"] = round(random.uniform(battery_allowedValues['charge_rate']['min'], battery_allowedValues['charge_rate']['max']))   
+        bms_params["temperature"] = random.uniform(battery_allowedValues['temperature']['min'],battery_allowedValues['temperature']['max'])
+        bms_params["state_of_charge"] = random.uniform(battery_allowedValues['state_of_charge']['min'], battery_allowedValues['state_of_charge']['max'])
+        bms_params["charge_rate"] = random.uniform(battery_allowedValues['charge_rate']['min'], battery_allowedValues['charge_rate']['max'])   
         return bms_params
 
 def streaming_bms_readings(max_count):
