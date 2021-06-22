@@ -36,4 +36,6 @@ jobs:
           path: ./htmlcov
           retention-days: 1
       - name: Run
-        run: python bms_sender_data.py
+        run: python bms_data_test.py
+      - name: Sender
+        run: python bms_data_send.py
