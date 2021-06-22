@@ -46,8 +46,9 @@ void BMSDataReceiveFromConsole()
             {
                UpdateSMADataParam[batteryParamIterater](INVALID_VALUE_s);
             } 
-           count++;
+           
         }
+		count++;
     //}while((!isStopRequestedByUser) || (eofReached != 1)); 
     }while((!isStopRequestedByUser) || (eofReached != 1) || (count=100)); // to avoid running infinitely
 }
