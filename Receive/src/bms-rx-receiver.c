@@ -61,28 +61,26 @@ void BMSDataReceiveFromConsole()
 
 float getParameterFromConsole(char *getLine, BmsParameters_e BatParam)
 {
-  char splitStrCategory[NumberOfParameters*2][12]={'\0'};
-  char splitStrParams[NumberOfParameters*2][12]={'\0'};
+  char splitStrCategory[NumberOfParameters*3][500]={'\0'};
+  char splitStrParams[NumberOfParameters*3][500]={'\0'};
   char *tokenCategory;
   char *tokenParams;  
   int k=0, p =0;
-  float temp;
+  float temp = VALUE_NOTFOUND;
   char buffer[MAXLENGTH];
-  //char pyString[MAXLENGTH];
+  getLine++[strlen(getLine)-1] = 0;
   
   strcpy(buffer,getLine);
-  printf("\n +++str value : %s  +++",buffer);
   tokenCategory = strtok (buffer,",");
   
   while (tokenCategory != NULL)
   {
-    
     strcpy((splitStrCategory[k]),tokenCategory);
     k++;
     tokenCategory = strtok (NULL, ",");
   }
 
-  for(int r = 0; r < (NumberOfParameters); r++)
+  for(int r = 0; r < NumberOfParameters; r++)
   {
 	tokenParams = strtok ((splitStrCategory[r]), ":");
 	
@@ -96,19 +94,15 @@ float getParameterFromConsole(char *getLine, BmsParameters_e BatParam)
   
   for(int j=0;j < (NumberOfParameters*3);j=j+2)
   {
-      //pyString = "'" + BatteryData[BatParam].ParameterName + "'";
-      //printf("pyString value : %s ", pyString);
-	  printf("**BaterryData value : %s **  ", BatteryData[BatParam].ParameterName);
-	  printf("** splitStrParams value: %s ** ", splitStrParams[j]);
       if(strcmp((splitStrParams[j]), BatteryData[BatParam].ParameterName) == 0)
       {
          temp = atof(splitStrParams[j+1]);
          break;
       }
-      else
-      {
-          temp = VALUE_NOTFOUND;
-      }
+	  else
+	  {
+		  temp = VALUE_NOTFOUND;
+	  }
   }
 
   tokenCategory = NULL;
