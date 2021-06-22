@@ -1,3 +1,3 @@
 import bms_sender_data
 
-bms_sender_data.streaming_bms_readings(50)
+bms_sender_data.streaming_bms_readings(25)

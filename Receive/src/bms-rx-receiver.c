@@ -97,7 +97,8 @@ float getParameterFromConsole(char *getLine, BmsParameters_e BatParam)
   {
       //pyString = "'" + BatteryData[BatParam].ParameterName + "'";
       //printf("pyString value : %s ", pyString);
-	  printf("BaterryData value : %s", BatteryData[BatParam].ParameterName);
+	  printf("**BaterryData value : %s **  ", BatteryData[BatParam].ParameterName);
+	  printf("** splitStrParams value: %s ** ", splitStrParams[j]);
       if(strcmp((splitStrParams[j]), BatteryData[BatParam].ParameterName) == 0)
       {
          temp = atof(splitStrParams[j+1]);
