@@ -49,7 +49,7 @@ void BMSDataReceiveFromConsole()
            
         }
     //}while((!isStopRequestedByUser) || (eofReached != 1)); 
-    }while((!isStopRequestedByUser) || (eofReached != 1) || (count=100); // to avoid running infinitely
+    }while((!isStopRequestedByUser) || (eofReached != 1) || (count=100)); // to avoid running infinitely
 }
 
 
