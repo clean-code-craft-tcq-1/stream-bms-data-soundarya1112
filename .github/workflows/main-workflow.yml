@@ -39,3 +39,7 @@ jobs:
         run: python bms_data_test.py
       - name: Sender
         run: python bms_data_send.py
+      - name: Receiver test
+        run: g++ -Iincludes -DUNIT_TEST -Wall -Wextra -fprofile-arcs -ftest-coverage -o testchecker ./test/*.cpp
+      - name: build for receiver
+        run: g++ -Iincludes -Wall -Wextra -o receiver ./src/*.c
