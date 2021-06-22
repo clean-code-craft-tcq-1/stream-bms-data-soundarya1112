@@ -37,5 +37,5 @@ def streaming_bms_readings(max_count):
         while(bmsparams_count < max_count):
              print(bms_parameters_generation())
              bmsparams_count += 1
-             time.sleep(3)
+             time.sleep(1)
           
